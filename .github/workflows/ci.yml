@@ -1,5 +1,5 @@
-name: cart ci
-on: push
+name: common ci
+on: [workflow_call]
 jobs:
     Build:
       runs-on: ubunutu-latest
