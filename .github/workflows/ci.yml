@@ -2,7 +2,7 @@ name: common ci
 on: [workflow_call]
 jobs:
     Build:
-      runs-on: ubunutu-latest
+      runs-on: ubuntu-latest
       steps:
         - name: check out code
           uses: actions/checkout@v4
