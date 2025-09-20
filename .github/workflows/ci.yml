@@ -1,5 +1,10 @@
 name: common ci
-on: [workflow_call]
+on: 
+    workflow_call:
+        inputs: 
+            component_name:
+                required: true
+                type: string
 jobs:
     Build:
       runs-on: ubuntu-latest
@@ -20,4 +25,8 @@ jobs:
         steps:
           - name: checkout code
             uses: actions/checkout@v4
+            with:
+                repository: Thippareddykishor/roboshop-helm
+          - name: Deploy
+            run: make component=${{inputs.component_name}} env=dev
           - run: echo deply
