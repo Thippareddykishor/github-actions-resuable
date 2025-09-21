@@ -6,22 +6,30 @@ on:
                 required: true
                 type: string
 jobs:
-    Build:
-      runs-on: ubuntu-latest
+    Download-dependencies:
+      runs-on: self-hosted
       steps:
         - name: check out code
           uses: actions/checkout@v4
         - run: echo build
     Test:
-        runs-on: ubuntu-latest
-        needs: Build
+        runs-on: self-hosted
+        needs: Download-dependencies
         steps:
           - name: checkout code
             uses: actions/checkout@v4
           - run: echo test
+    DockerBuild-n-Push:
+      runs-on: self-hosted
+      needs: Test
+      steps:
+        - name: check out repo
+          uses: actions/checkout@v4
+        - run: echo tests
+
     Dev-Deployment:
-        runs-on: ubuntu-latest
-        needs: Test
+        runs-on: self-hosted
+        needs: DockerBuild-n-Push
         steps:
           - name: checkout code
             uses: actions/checkout@v4
