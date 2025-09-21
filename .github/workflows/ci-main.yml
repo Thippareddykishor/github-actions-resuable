@@ -12,16 +12,9 @@ jobs:
         - name: check out code
           uses: actions/checkout@v4
         - run: echo build
-    Test:
-        runs-on: self-hosted
-        needs: Download-dependencies
-        steps:
-          - name: checkout code
-            uses: actions/checkout@v4
-          - run: echo test
     DockerBuild-n-Push:
       runs-on: self-hosted
-      needs: Test
+      needs: Download-dependencies
       steps:
         - name: check out repo
           uses: actions/checkout@v4
