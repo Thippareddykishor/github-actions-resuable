@@ -17,10 +17,10 @@ jobs:
         - name: Download dependencies
           run: |
             if [ ${{inputs.app_type}} == nodejs ]; then
-            npm install
+              npm install
             elif 
             if [ ${{inputs.app_type}} == maven ] ; then
-            mvn package
+              mvn package
             fi
 
     DockerBuild-n-Push:
