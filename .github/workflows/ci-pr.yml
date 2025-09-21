@@ -18,5 +18,8 @@ jobs:
         steps:
           - name: checkout code
             uses: actions/checkout@v4
-          - run: echo test
+          - run: echo unit test
+            name: unit tests
+          - run: echo intergration test
+            name: intergration test
    
