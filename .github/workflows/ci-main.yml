@@ -19,7 +19,7 @@ jobs:
             if [ ${{inputs.app_type}} == nodejs ]; then
               npm install
             elif 
-            if [ ${{inputs.app_type}} == maven ] ; then
+            if [ ${{inputs.app_type}} == maven ]; then
               mvn package
             fi
 
