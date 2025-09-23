@@ -21,20 +21,22 @@ jobs:
             elif  [ ${{inputs.app_type}} == maven ]; then
               mvn package
             fi
-            docker build .
+            docker build -t 740279881161.dkr.ecr.us-east-1.amazonaws.com/cart .
 
-    DockerBuild-n-Push:
+    DockerPush:
       runs-on: self-hosted
       needs: Download-dependencies-docker-build
       steps:
         - name: check out repo
           uses: actions/checkout@v4
-        - name: docker build
-          run: echo 
+        - name: docker push
+          run: |
+            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 740279881161.dkr.ecr.us-east-1.amazonaws.com
+            docker push 740279881161.dkr.ecr.us-east-1.amazonaws.com/cart:latest            
 
     Dev-Deployment:
         runs-on: self-hosted
-        needs: DockerBuild-n-Push
+        needs: DockerPush
         steps:
           - name: checkout code
             uses: actions/checkout@v4
