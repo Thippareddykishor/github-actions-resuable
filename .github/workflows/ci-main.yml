@@ -21,7 +21,7 @@ jobs:
             elif  [ ${{inputs.app_type}} == maven ]; then
               mvn package
             fi
-            docker build -t 740279881161.dkr.ecr.us-east-1.amazonaws.com/${{inputs.app_type}}:${GITHUB_SHA} .
+            docker build -t 740279881161.dkr.ecr.us-east-1.amazonaws.com/${{inputs.component_name}}:${GITHUB_SHA} .
 
     DockerPush:
       runs-on: self-hosted
@@ -32,7 +32,7 @@ jobs:
         - name: docker push
           run: |
             aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 740279881161.dkr.ecr.us-east-1.amazonaws.com
-            docker push 740279881161.dkr.ecr.us-east-1.amazonaws.com/${{inputs.app_type}}:${GITHUB_SHA}            
+            docker push 740279881161.dkr.ecr.us-east-1.amazonaws.com/${{inputs.component_name}}:${GITHUB_SHA}            
 
     Dev-Deployment:
         runs-on: self-hosted
