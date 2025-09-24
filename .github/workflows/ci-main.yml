@@ -45,5 +45,5 @@ jobs:
           - name: Deploy
             run: |
               aws eks update-kubeconfig --name dev
-              make component=${{inputs.component_name}} env=dev
+              make component=${{inputs.component_name}} env=dev imageTag=${GITHUB_SHA}
               
