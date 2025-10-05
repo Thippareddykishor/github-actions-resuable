@@ -50,7 +50,7 @@ jobs:
              
     UAT-Deployment:
       runs-on: self-hosted
-      needs: Dev-Deployments
+      needs: Dev-Deployment
       steps:
         - name: checkout code
           uses: actions/checkout@v4
